@@ -60,9 +60,7 @@ pipeline {
             format: 'Cucumber', 
             filePath: '.tmp/new/*.json', 
             autoCreateTestCases: false,
-            customTestCycle: [
-               
-              ]
+            customTestCycle: []
     }
   }
 }
