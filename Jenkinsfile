@@ -23,7 +23,7 @@ pipeline {
             steps {
                 downloadFeatureFiles serverAddress: 'https://ramakonatam.atlassian.net',
                     projectKey: params.PROJECT_KEY,
-                    targetPath:'/features'
+                    targetPath:'/'
             }
         }
         stage('Install Dependencies') {
