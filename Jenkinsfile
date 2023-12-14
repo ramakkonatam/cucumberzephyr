@@ -56,7 +56,7 @@ pipeline {
      post {
         always {
             publishTestResults serverAddress: 'https://ramakonatam.atlassian.net',
-            projectKey: 'WEB', 
+            projectKey: 'KAN', 
             format: 'Cucumber', 
             filePath: '.tmp/new/*.json', 
             autoCreateTestCases: false,
