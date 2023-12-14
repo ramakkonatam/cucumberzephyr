@@ -59,8 +59,7 @@ pipeline {
             projectKey: 'KAN', 
             format: 'Cucumber', 
             filePath: '.tmp/new/*.json', 
-            autoCreateTestCases: false,
-            customTestCycle: []
+            autoCreateTestCases: false
     }
   }
 }
