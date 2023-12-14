@@ -19,13 +19,13 @@ pipeline {
                 checkout scm
             }
         }
-         stage('Download Feature Files'){
-            steps {
-                downloadFeatureFiles serverAddress: 'https://ramakonatam.atlassian.net',
-                    projectKey: params.PROJECT_KEY,
-                    targetPath:'/'
-            }
-        }
+        //  stage('Download Feature Files'){
+        //     steps {
+        //         downloadFeatureFiles serverAddress: 'https://ramakonatam.atlassian.net',
+        //             projectKey: params.PROJECT_KEY,
+        //             targetPath:'/'
+        //     }
+        // }
         stage('Install Dependencies') {
             steps {
                 // Install npm dependencies
