@@ -59,7 +59,10 @@ pipeline {
             projectKey: 'WEB', 
             format: 'Cucumber', 
             filePath: 'tmp/new/*.json', 
-            autoCreateTestCases: false
+            autoCreateTestCases: false,
+            customTestCycle: [
+               
+              ]
     }
   }
 }
