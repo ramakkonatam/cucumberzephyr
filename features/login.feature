@@ -1,6 +1,6 @@
 Feature: The Internet Guinea Pig Website
 
-  @TestCaseKey=ABC-T123
+  @TestCaseKey=KAN-T5305
   Scenario Outline: As a user, I can log into the secure area
 
     Given I am on the login page
