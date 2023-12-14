@@ -41,13 +41,13 @@ pipeline {
         }
         stage('Debug') {
         steps {
-        sh 'ls -R ./tmp/new'
+        sh 'ls -R .tmp/new'
        }
     }
        
         stage('Create Zip File') {
           steps {
-        dir('./tmp/new/') {
+        dir('.tmp/new/') {
             sh 'zip -r cucumber-results.zip .'
         }
         }
@@ -58,7 +58,7 @@ pipeline {
             publishTestResults serverAddress: 'https://ramakonatam.atlassian.net',
             projectKey: 'WEB', 
             format: 'Cucumber', 
-            filePath: 'tmp/new/*.json', 
+            filePath: '.tmp/new/*.json', 
             autoCreateTestCases: false,
             customTestCycle: [
                
