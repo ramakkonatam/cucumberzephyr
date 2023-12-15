@@ -3,7 +3,9 @@ import { expect, $ } from '@wdio/globals'
 
 import LoginPage from '../pageobjects/login.page';
 import SecurePage from '../pageobjects/secure.page';
+import cucumberJson from 'wdio-cucumberjs-json-reporter';
 
+cucumberJson.attach({"json-string": true}, 'application/json');
 const pages = {
     login: LoginPage
 }
