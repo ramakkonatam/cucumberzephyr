@@ -1,4 +1,5 @@
 Feature: The Internet Guinea Pig Website
+Let users know when tasks are overdue, even when using other features of the app
 
   @TestCaseKey=KAN-T5305
   Scenario Outline: As a user, I can log into the secure area
