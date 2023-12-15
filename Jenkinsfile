@@ -52,6 +52,27 @@ pipeline {
         }
         }
       }
+     stage('Upload Results to Zephyr Scale') {
+            steps {
+                script {
+                    // Check if parameters are provided
+                    if (!params.PROJECT_KEY || !params.TOKEN) {
+                        error "Some or all of the parameters are missing. Usage: jenkinsJob -DPROJECT_KEY=<projectKey> -DTOKEN=<token>"
+                    }
+
+                    // Set project key and token
+                    def PROJECT_KEY = params.PROJECT_KEY
+                    def TOKEN = params.TOKEN
+
+                    // API URL
+                    def URL = "https://api.zephyrscale.smartbear.com/v2/automations/executions/junit?projectKey=${PROJECT_KEY}&autoCreateTestCases=true"
+
+                    // Upload results to Zephyr Scale
+                    sh "cd .tmp/new/ && curl -X POST -F 'file=@cucumber-results.zip' -H 'Authorization: Bearer ${TOKEN}' $URL"
+                    // sh "curl -o -X POST -F 'file=./test/reports/junit-results.zip' -H 'Authorization: Bearer ${TOKEN}' $URL"
+                }
+            }
+        }
     }
      post {
         always {
