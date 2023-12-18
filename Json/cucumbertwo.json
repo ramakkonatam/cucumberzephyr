@@ -16,7 +16,6 @@
       {
         "keyword": "Scenario",
         "type": "scenario",
-        "description": "",
         "name": "As a user, I can log into the secure area",
         "tags": [
           {
