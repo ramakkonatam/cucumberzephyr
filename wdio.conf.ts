@@ -133,13 +133,20 @@ export const config: Options.Testrunner = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-     reporters: ['spec',[ 'cucumberjs-json', {
-        jsonFolder: '.tmp/new/',
-        language: 'en',
-    },
-    ],
-   ],
-
+    reporters: [
+        'spec',
+        [
+          'cucumberjs-json',
+          {
+            jsonFolder: '.tmp/new/',
+            language: 'en',
+            reportFilePerRetry: 'true',
+            disableHooks:true
+          }
+        ]
+      ],
+  
+    // reporters: ['spec'],
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
@@ -159,11 +166,32 @@ export const config: Options.Testrunner = {
         // <boolean> fail if there are any undefined or pending steps
         strict: false,
         // <string> (expression) only execute the features or scenarios with tags matching the expression
-        tagExpression: '',
-        // <number> timeout for step definitions
         timeout: 60000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
-        ignoreUndefinedDefinitions: false
+        ignoreUndefinedDefinitions: false,
+         // <boolean> show full backtrace for errors
+         // <string[]> module used for processing required features
+         // <boolean< Treat ambiguous definitions as errors
+         failAmbiguousDefinitions: true,
+         // <boolean> invoke formatters without executing steps
+         names: [],
+         // <boolean> hide step definition snippets for pending steps
+         // <boolean> hide source uris
+         // <string[]> (name) specify the profile to use
+         profile: [],
+         // <string[]> (file/dir) require files before executing features
+         scenarioLevelReporter: false,
+         order: 'defined',
+         // <string> specify a custom snippet syntax
+         snippetSyntax: undefined,
+         // <boolean> fail if there are any undefined or pending steps
+         // <string> (expression) only execute the features or scenarios with
+         // tags matching the expression, see
+         // https://docs.cucumber.io/tag-expressions/
+         tagExpression: 'not @Pending',
+         // <boolean> add cucumber tags to feature or scenario name
+         tagsInTitle: false,
+         // <number> timeout for step definitions
     },
 
     //
@@ -181,6 +209,7 @@ export const config: Options.Testrunner = {
      */
     // onPrepare: function (config, capabilities) {
     // },
+
     /**
      * Gets executed before a worker process is spawned and can be used to initialize specific service
      * for that worker as well as modify runtime environments in an async fashion.
