@@ -1,0 +1,58 @@
+[
+  {
+    "uri": "features/sample.feature",
+    "keyword": "Feature",
+    "name": "Sample Feature",
+    "tags": [
+      {
+        "name": "@featureTag",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "keyword": "Scenario",
+        "type": "scenario",
+        "id": "sample-scenario",
+        "line": 5,
+        "name": "Sample Scenario",
+        "tags": [
+          {
+            "name": "@scenarioTag",
+            "line": 6
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given",
+            "line": 8,
+            "name": "I have a sample step",
+            "result": {
+              "status": "passed",
+              "duration": 100
+            }
+          },
+          {
+            "keyword": "When",
+            "line": 9,
+            "name": "I perform an action",
+            "result": {
+              "status": "failed",
+              "duration": 50,
+              "error_message": "Sample error message"
+            }
+          },
+          {
+            "keyword": "Then",
+            "line": 10,
+            "name": "I expect a certain outcome",
+            "result": {
+              "status": "skipped",
+              "duration": 20
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
