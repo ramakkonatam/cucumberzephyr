@@ -68,43 +68,43 @@ pipeline {
                     def URL = "https://api.zephyrscale.smartbear.com/v2/automations/executions/custom?projectKey=${PROJECT_KEY}&autoCreateTestCases=false"
 
                     // Upload results to Zephyr Scale
-                    sh "cd .tmp/new/ && curl -X POST -F 'file=@cucumber-results.zip' -H 'Authorization: Bearer ${TOKEN}' $URL"
+                    sh "cd Json/ && curl -X POST -F 'file=@cucumber-results.zip' -H 'Authorization: Bearer ${TOKEN}' $URL"
                     // sh "curl -o -X POST -F 'file=./test/reports/junit-results.zip' -H 'Authorization: Bearer ${TOKEN}' $URL"
                 }
             }
         }
     }
-    //  post {
-    //     success {
-    //         // Perform actions after a successful build
-    //         echo 'Build successful!'
-
-    //         // Example: Trigger another job or perform additional actions
-    //         // build job: 'DeployJob', wait: false
-    //     }
-
-    //     failure {
-    //         // Perform actions after a failed build
-    //         echo 'Build failed!'
-
-    //         // Example: Send a notification or trigger another job
-    //         // emailext subject: 'Build Failed', body: 'The build failed.', recipientProviders: [developers()]
-    //     }
-    // }
      post {
-        always {
-            publishTestResults serverAddress: 'https://krishnakr.atlassian.net',
-            projectKey: 'BAC', 
-            format: 'custom', 
-            filePath: 'Json/zephyr.json', 
-            autoCreateTestCases: false,
-             customTestCycle: [
-                name: 'Jenkins Build',
-                description: 'Results from Jenkins Build'
-                //jiraProjectVersion: '10001', 
-                //folderId: '3040527', 
-                //customFields: '{"number":50,"single-choice":"option1","checkbox":true,"userpicker":"5f8b5cf2ddfdcb0b8d1028bb","single-line":"a text line","datepicker":"2020-01-25","decimal":10.55,"multi-choice":["choice1","choice3"],"multi-line":"first line<br />second line"}'
-              ]
+        success {
+            // Perform actions after a successful build
+            echo 'Build successful!'
+
+            // Example: Trigger another job or perform additional actions
+            // build job: 'DeployJob', wait: false
+        }
+
+        failure {
+            // Perform actions after a failed build
+            echo 'Build failed!'
+
+            // Example: Send a notification or trigger another job
+            // emailext subject: 'Build Failed', body: 'The build failed.', recipientProviders: [developers()]
+        }
     }
-  }
+  //    post {
+  //       always {
+  //           publishTestResults serverAddress: 'https://krishnakr.atlassian.net',
+  //           projectKey: 'BAC', 
+  //           format: 'custom', 
+  //           filePath: 'Json/zephyr.json', 
+  //           autoCreateTestCases: false,
+  //            customTestCycle: [
+  //               name: 'Jenkins Build',
+  //               description: 'Results from Jenkins Build'
+  //               //jiraProjectVersion: '10001', 
+  //               //folderId: '3040527', 
+  //               //customFields: '{"number":50,"single-choice":"option1","checkbox":true,"userpicker":"5f8b5cf2ddfdcb0b8d1028bb","single-line":"a text line","datepicker":"2020-01-25","decimal":10.55,"multi-choice":["choice1","choice3"],"multi-line":"first line<br />second line"}'
+  //             ]
+  //   }
+  // }
 }
