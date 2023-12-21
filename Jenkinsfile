@@ -8,8 +8,8 @@ pipeline {
     }
 
     parameters {
-        string(name: 'PROJECT_KEY',defaultValue:'KAN', description: 'Jira project key for tests')
-        string(name: 'TOKEN', defaultValue:'06611a22-fb19-4e84-9e04-63eff80de914',description: 'Public REST API token for Zephyr Scale')
+        string(name: 'PROJECT_KEY',defaultValue:'BAC', description: 'Jira project key for tests')
+        string(name: 'TOKEN', defaultValue:'a96113da-d857-4f50-83dd-1dfaa9cbb850',description: 'Public REST API token for Zephyr Scale')
     }
     
     stages {
@@ -65,7 +65,7 @@ pipeline {
                     def TOKEN = params.TOKEN
 
                     // API URL
-                    def URL = "https://api.zephyrscale.smartbear.com/v2/automations/executions/cucumber?projectKey=${PROJECT_KEY}&autoCreateTestCases=false"
+                    def URL = "https://api.zephyrscale.smartbear.com/v2/automations/executions/custom?projectKey=${PROJECT_KEY}&autoCreateTestCases=false"
 
                     // Upload results to Zephyr Scale
                     sh "cd .tmp/new/ && curl -X POST -F 'file=@cucumber-results.zip' -H 'Authorization: Bearer ${TOKEN}' $URL"
@@ -93,10 +93,10 @@ pipeline {
     // }
      post {
         always {
-            publishTestResults serverAddress: 'https://ramakonatam.atlassian.net',
-            projectKey: 'KAN', 
-            format: 'Cucumber', 
-            filePath: '.tmp/new/*.json', 
+            publishTestResults serverAddress: 'https://krishnakr.atlassian.net',
+            projectKey: 'BAC', 
+            format: 'custom', 
+            filePath: 'Json/zephyr.json', 
             autoCreateTestCases: false,
              customTestCycle: [
                 name: 'Jenkins Build',
