@@ -47,8 +47,8 @@ pipeline {
        
         stage('Create Zip File') {
           steps {
-        dir('.tmp/new/') {
-            sh 'zip -r cucumber-results.zip .'
+        dir('Json/') {
+            sh 'zip -r custom-results.zip .'
         }
         }
       }
@@ -68,7 +68,7 @@ pipeline {
                     def URL = "https://api.zephyrscale.smartbear.com/v2/automations/executions/custom?projectKey=${PROJECT_KEY}&autoCreateTestCases=false"
 
                     // Upload results to Zephyr Scale
-                    sh "cd Json/ && curl -X POST -F 'file=@cucumber-results.zip' -H 'Authorization: Bearer ${TOKEN}' $URL"
+                    sh "cd Json/ && curl -X POST -F 'file=@custom-results.zip' -H 'Authorization: Bearer ${TOKEN}' $URL"
                     // sh "curl -o -X POST -F 'file=./test/reports/junit-results.zip' -H 'Authorization: Bearer ${TOKEN}' $URL"
                 }
             }
